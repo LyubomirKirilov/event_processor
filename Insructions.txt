@@ -1,0 +1,53 @@
+C++ Candidate Home Assignment (Event Processor)
+
+Please create an implementation for the IEventProcessor interface below. This is an event processor. Multiple threads (multiple writers) can
+push their events (derived from IEvent but you can use type erasure instead of virtual functions if you want) into the queue (see the usage
+examples below) and the worker thread of the IEventProcessor (one reader) pops the events from the queue and call the Process() method.
+
+Requirements:
+    - multiple (16) writers from different threads, one reader (IEventProcessor's thread) calling IEvent::Process for each event (publish 10M
+events by each writer)
+
+
+
+    - use CAS, not locks
+
+
+
+    - make it fast and efficient
+
+
+    - avoid unnecessary memory copying and memory allocations
+
+Please create a CMake project in a GitHub repository. The target OS is Linux (for example, Ubuntu). Compiler - GCC or Clang.
+Programming language: C++
+
+If you have time, please use profilers to optimise code and describe the improvements you have made based on profiler reports. Please
+commit profiler reports and other deliverables to GitHub repository.
+Please commit all versions of your class, so we can see the progress from a naive implementation to an optimised version. Feel free to add
+comments describing your thought process and architectural decision choice.
+Please measure average and worst latency (start measuring before calling Reserve() and stop measuring when event is destroyed).
+Please pay attention to the design and do not submit “spaghetti code”.
+No unit tests are needed and we do not expect production ready code with no bugs. But do your best!
+
+
+
+
+// Initial TODOs:
+
+// Event processor
+// Multiple threads (multiple writers) can push their events (derived from IEvent but you can use type erasure instead of virtual functions if you want) into the queue (see the usage examples below)
+// the worker thread of the IEventProcessor (one reader) pops the events from the queue and call the Process() method.
+
+
+// Final TODOs for the task:
+// Use CAS where applicable
+// check if I should use Memory Ordering Types
+// Use thread pools efficiently
+// Create threads with std::jthread
+// Check if there is a functionality in C++ 20/23 that can be used for optimization
+// Std::scoped_lock
+// Test the program for CPU usage
+// Test the program for memory usage
+// Make sure that I have used inline functions where applicable in order to optimize the speed
+// Make sure to use std::move and CAS where applicable
